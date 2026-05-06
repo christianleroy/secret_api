@@ -56,3 +56,43 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Spin up Postgres
+
+```bash
+docker run -d \
+  --name laravel_postgres \
+  -e POSTGRES_DB=laravel \
+  -e POSTGRES_USER=laravel \
+  -e POSTGRES_PASSWORD=secret \
+  -p 5432:5432 \
+  -v laravel_postgres_data:/var/lib/postgresql/data \
+  postgres:16-alpine
+  
+```
+Docker build
+
+```bash
+docker build -t laravel_app .
+```
+
+Docker Run (without and with DB credentials)
+
+```bash
+docker run -d --name laravel_app -p 8000:8000 laravel_app
+docker run -d --rm --name laravel_app -p 8000:8000 laravel_app
+```
+
+```bash
+docker run -d \
+  --name laravel_app \
+  -p 8000:8000 \
+  -e DB_CONNECTION=pgsql \
+  -e DB_HOST=host.docker.internal \
+  -e DB_PORT=5432 \
+  -e DB_DATABASE=laravel \
+  -e DB_USERNAME=laravel \
+  -e DB_PASSWORD=secret \
+  -e APP_KEY=your_app_key \
+  laravel_app
+```
