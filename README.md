@@ -90,9 +90,16 @@ docker run -d \
   -e DB_CONNECTION=pgsql \
   -e DB_HOST=host.docker.internal \
   -e DB_PORT=5432 \
-  -e DB_DATABASE=laravel \
-  -e DB_USERNAME=laravel \
-  -e DB_PASSWORD=secret \
+  -e DB_DATABASE=secret_db \
+  -e DB_USERNAME=secret_user \
+  -e DB_PASSWORD=secretpass \
   -e APP_KEY=your_app_key \
   laravel_app
+```
+
+Using docker-compose
+
+```bash
+docker compose up -d --build
+docker compose logs -f app   # watch migrate + serve start up
 ```
