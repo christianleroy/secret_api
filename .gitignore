@@ -27,3 +27,5 @@ Thumbs.db
 # Frontend (optional, since you're REST-only)
 /public/hot
 /public/build
+.env.docker
+.env.local

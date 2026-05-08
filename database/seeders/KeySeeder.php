@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Key;
 use Illuminate\Database\Seeder;
 
-class keySeeder extends Seeder
+class KeySeeder extends Seeder
 {
     /**
      * Run the database seeds.
