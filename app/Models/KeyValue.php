@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class KeyValue extends Model
 {
     protected $fillable = ['key_id','value','recorded_at'];
-    protected $casts = ['value' => 'array'];
+    protected $casts = ['value' => 'array', 'recorded_at' => 'datetime'];
 
     public function key(): BelongsTo
     {

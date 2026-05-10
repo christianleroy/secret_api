@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Key extends Model
 {
@@ -11,5 +12,10 @@ class Key extends Model
 
     public function values(): HasMany {
         return $this->hasMany(KeyValue::class);
+    }
+
+    public function latestValue(): HasOne
+    {
+        return $this->hasOne(KeyValue::class)->latestOfMany('recorded_at');
     }
 }
