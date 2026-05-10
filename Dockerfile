@@ -1,9 +1,9 @@
-FROM php:8.4-cli-alpine
+FROM dunglas/frankenphp:php8.4-alpine
 
 WORKDIR /app
 
 RUN apk add --no-cache postgresql-client libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql
+    && install-php-extensions pdo pdo_pgsql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -15,4 +15,4 @@ RUN mkdir -p bootstrap/cache storage/logs storage/framework/cache storage/framew
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php artisan migrate --force && php artisan l5-swagger:generate && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
+CMD ["sh", "-c", "php artisan migrate --force && php artisan l5-swagger:generate && frankenphp php-server --listen=0.0.0.0:${PORT:-8000} --root=public"]
